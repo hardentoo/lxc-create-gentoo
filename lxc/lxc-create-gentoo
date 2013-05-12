@@ -33,6 +33,7 @@ do
 		exit 0
 		;;
 	*)
+		name="$1"
 		shift
 		break
 		;;
@@ -48,7 +49,7 @@ echo "user-data: $USER_DATA"
 LXC_ROOT=/etc/lxc
 echo "LXC_ROOT is $LXC_ROOT"
 
-uts="$(uuidgen|cut -d- -f1)"
+uts="${name:-$(uuidgen|cut -d- -f1)}"
 echo "Creating container: $uts"
 
 MAC=$(openssl rand -hex 6|sed 's/\(xx\)/\1:/g; s/.$//')
