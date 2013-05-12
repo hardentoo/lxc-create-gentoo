@@ -82,6 +82,7 @@ lxc-start -n "${uts}"
 
 test _"$KEEP_AFTER_STOP" = _y && {
     echo "Not destroying container: ${uts}"
+    ln -vs lxc "/etc/init.d/lxc.${uts}"
 } || {
     lvremove -f "vg/${uts}"
     rm -rvf "${LXC_ROOT}/${uts}"
